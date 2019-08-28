@@ -4,8 +4,8 @@ import (
 	"net/http"
 	"os"
 
+	log "../logger"
 	"./home"
-	log "./logger"
 )
 
 var (

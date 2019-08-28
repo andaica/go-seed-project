@@ -3,8 +3,8 @@ package home
 import (
 	"net/http"
 
-	log "../logger"
-	"../middleware"
+	log "../../logger"
+	"../../middleware"
 )
 
 const message = "Hello seed!"
