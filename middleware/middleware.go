@@ -3,7 +3,7 @@ package middleware
 import (
 	"net/http"
 
-	log "../logger"
+	log "github.com/andaica/go-seed-project/logger"
 )
 
 type mFunc func(http.HandlerFunc) http.HandlerFunc

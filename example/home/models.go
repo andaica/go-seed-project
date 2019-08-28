@@ -3,8 +3,8 @@ package home
 import (
 	"errors"
 
-	log "../../logger"
-	"../../ormbase"
+	log "github.com/andaica/go-seed-project/logger"
+	"github.com/andaica/go-seed-project/ormbase"
 	"github.com/jinzhu/gorm"
 )
 

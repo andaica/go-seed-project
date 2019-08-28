@@ -4,9 +4,9 @@ import (
 	"encoding/json"
 	"net/http"
 
-	log "../../logger"
-	"../../middleware"
-	"../../util"
+	log "github.com/andaica/go-seed-project/logger"
+	"github.com/andaica/go-seed-project/middleware"
+	"github.com/andaica/go-seed-project/util"
 )
 
 const message = "Hello seed!"

@@ -4,8 +4,8 @@ import (
 	"net/http"
 	"os"
 
-	log "../logger"
 	"./home"
+	log "github.com/andaica/go-seed-project/logger"
 )
 
 var (
