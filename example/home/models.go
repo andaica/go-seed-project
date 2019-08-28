@@ -9,10 +9,10 @@ import (
 )
 
 type PageModel struct {
-	ID    uint    `gorm:"primary_key;auto_increment"`
-	Name  string  `gorm:"column:name;unique"`
-	Link  string  `gorm:"column:link;size:255"`
-	Image *string `gorm:"column:image"`
+	ID    uint    `gorm:"primary_key;auto_increment" json:"id"`
+	Name  string  `gorm:"column:name;unique" json:"name"`
+	Link  string  `gorm:"column:link;size:255" json:"link"`
+	Image *string `gorm:"column:image" json:"image"`
 }
 
 func (PageModel) TableName() string {
@@ -26,7 +26,7 @@ var connectErr error
 func init() {
 	db, connectErr = ormbase.Connect("root", "anmap1234", "@tcp(127.0.0.1:3306)", "demoAPI")
 	if connectErr != nil {
-		log.Fatal(connectErr)
+		log.Error(connectErr)
 	}
 	log.Log("Connect DB success!")
 

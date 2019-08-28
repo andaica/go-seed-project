@@ -20,6 +20,6 @@ func main() {
 
 	err := http.ListenAndServe(ServiceAddr, mux)
 	if err != nil {
-		log.Fatal("server failed to start: ", err)
+		log.Error("server failed to start: ", err)
 	}
 }

@@ -18,6 +18,6 @@ func Log(v ...interface{}) {
 	log.Println(v...)
 }
 
-func Fatal(v ...interface{}) {
-	log.Fatal(v...)
+func Error(v ...interface{}) {
+	log.Println("Error: ", v)
 }
