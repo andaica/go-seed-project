@@ -6,6 +6,7 @@ import (
 
 	log "../../logger"
 	"../../middleware"
+	"../../util"
 )
 
 const message = "Hello seed!"
@@ -36,77 +37,59 @@ func HomePage(w http.ResponseWriter, r *http.Request) {
 func ListPage(w http.ResponseWriter, r *http.Request) {
 	listPages, err := allPages()
 	if err != nil {
-		response := map[string]interface{}{"status": "NG", "message": err.Error()}
-		json.NewEncoder(w).Encode(response)
+		util.ResponseError(w, err)
 		return
 	}
 
-	w.Header().Set("Content-Type", "application/json; charset=utf-8")
-	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(listPages)
+	util.ResponseSuccess(w, listPages)
 }
 
 func AddPage(w http.ResponseWriter, r *http.Request) {
 	page, err := getDataFromPost(r)
 	if err != nil {
-		response := map[string]interface{}{"status": "NG", "message": err.Error()}
-		json.NewEncoder(w).Encode(response)
+		util.ResponseError(w, err)
 		return
 	}
 
 	page, err = insertPage(page)
 	if err != nil {
-		response := map[string]interface{}{"status": "NG", "message": err.Error()}
-		json.NewEncoder(w).Encode(response)
+		util.ResponseError(w, err)
 		return
 	}
 
-	w.Header().Set("Content-Type", "application/json; charset=utf-8")
-	w.WriteHeader(http.StatusOK)
-	response := map[string]interface{}{"status": "OK", "page": page}
-	json.NewEncoder(w).Encode(response)
+	util.ResponseSuccess(w, page)
 }
 
 func UpdatePage(w http.ResponseWriter, r *http.Request) {
 	page, err := getDataFromPost(r)
 	if err != nil {
-		response := map[string]interface{}{"status": "NG", "message": err.Error()}
-		json.NewEncoder(w).Encode(response)
+		util.ResponseError(w, err)
 		return
 	}
 
 	page, err = updatePage(page)
 	if err != nil {
-		response := map[string]interface{}{"status": "NG", "message": err.Error()}
-		json.NewEncoder(w).Encode(response)
+		util.ResponseError(w, err)
 		return
 	}
 
-	w.Header().Set("Content-Type", "application/json; charset=utf-8")
-	w.WriteHeader(http.StatusOK)
-	response := map[string]interface{}{"status": "OK", "page": page}
-	json.NewEncoder(w).Encode(response)
+	util.ResponseSuccess(w, page)
 }
 
 func DeletePage(w http.ResponseWriter, r *http.Request) {
 	page, err := getDataFromPost(r)
 	if err != nil {
-		response := map[string]interface{}{"status": "NG", "message": err.Error()}
-		json.NewEncoder(w).Encode(response)
+		util.ResponseError(w, err)
 		return
 	}
 
 	_, err = deletePage(page)
 	if err != nil {
-		response := map[string]interface{}{"status": "NG", "message": err.Error()}
-		json.NewEncoder(w).Encode(response)
+		util.ResponseError(w, err)
 		return
 	}
 
-	w.Header().Set("Content-Type", "application/json; charset=utf-8")
-	w.WriteHeader(http.StatusOK)
-	response := map[string]interface{}{"status": "OK", "result": "Delete success"}
-	json.NewEncoder(w).Encode(response)
+	util.ResponseSuccess(w, "Delete success")
 }
 
 func getDataFromPost(r *http.Request) (page PageModel, err error) {
