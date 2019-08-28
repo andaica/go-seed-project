@@ -1,0 +1,25 @@
+package main
+
+import (
+	"net/http"
+	"os"
+
+	"./home"
+	log "./logger"
+)
+
+var (
+	ServiceAddr = os.Getenv("GO_SERVICE_ADDR")
+)
+
+func main() {
+	mux := http.NewServeMux()
+	home.RegistRouter(mux)
+
+	log.Log("server starting...")
+
+	err := http.ListenAndServe(ServiceAddr, mux)
+	if err != nil {
+		log.Fatal("server failed to start: ", err)
+	}
+}
